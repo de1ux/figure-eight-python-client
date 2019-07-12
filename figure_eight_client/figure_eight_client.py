@@ -1,13 +1,19 @@
 import json
-import urllib
+import requests
 
 try:
+    # python 2 optimization
     from cStringIO import StringIO
 except:
-    from StringIO import StringIO
-from zipfile import ZipFile
+    try:
+        # python 2 fallback
+        from StringIO import StringIO
+    except:
+        # python 3 fallback
+        from io import StringIO
 
-import requests
+
+from zipfile import ZipFile
 
 
 class FigureEightClient:

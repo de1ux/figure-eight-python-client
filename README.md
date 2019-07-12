@@ -5,7 +5,7 @@ Python client drawn from [Figure Eight's API docs](https://success.figure-eight.
 ## Install
 
 ```bash
-$ pip install figure-eight-python-client
+$ pip install figure-eight-client
 ```
 
 ## Usage
@@ -13,7 +13,7 @@ $ pip install figure-eight-python-client
 Replace `<figure-eight-api-token>` with a token from https://make.figure-eight.com/account/api
 
 ```python
->>> from figure_eight_python_client import FigureEightClient
+>>> from figure_eight_client import FigureEightClient
 >>> client = FigureEightClient("<figure-eight-api-token>")
 ```
 
