@@ -28,6 +28,8 @@ Replace `<figure-eight-api-token>` with a token from https://make.figure-eight.c
 |find_jobs_by_support_email(support_email, team_id=None)|
 |get_judgements_by_job_id(job_id)|
 |get_json_results_by_job_id(job_id)|
+|set_job_price_in_cents_per_page(job_id, price_in_cents)|
+|set_job_title(job_id, title)|
 
 ## Contributing
 
