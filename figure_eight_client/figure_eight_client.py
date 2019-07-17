@@ -36,6 +36,24 @@ class FigureEightClient:
             raise Exception("Got status code {status} to {path}: {reason}".format(status=res.status_code, path=path,
                                                                                   reason=res.reason))
 
+    def set_job_title(self, job_id, title):
+        path = "jobs/{}.json".format(job_id)
+        url = self.endpoint.format(path=path, api_key=self.api_key)
+
+        res = requests.post(url, data={"job[title]": title})
+        self.__check_response_status_code(res, path)
+
+        return res.json()
+
+    def set_job_price_in_cents_per_page(self, job_id, price_in_cents):
+        path = "jobs/{}.json".format(job_id)
+        url = self.endpoint.format(path=path, api_key=self.api_key)
+
+        res = requests.post(url, data={"job[payment_cents]": price_in_cents})
+        self.__check_response_status_code(res, path)
+
+        return res.json()
+
     def copy_job(self, job_id, all_units=True):
         path = "jobs/{}/copy.json".format(job_id)
         url = self.endpoint.format(path=path, api_key=self.api_key)
