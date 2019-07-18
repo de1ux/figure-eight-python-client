@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="figure-eight-client",
-    version="1.0.3",
+    version="1.0.5",
     author="Nathan Evans",
     author_email="evans.nathan.j@gmail.com",
     description="Simple client for the Figure Eight API",

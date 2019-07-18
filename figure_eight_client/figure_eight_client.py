@@ -40,7 +40,7 @@ class FigureEightClient:
         path = "jobs/{}.json".format(job_id)
         url = self.endpoint.format(path=path, api_key=self.api_key)
 
-        res = requests.post(url, data={"job[title]": title})
+        res = requests.put(url, data={"job[title]": title})
         self.__check_response_status_code(res, path)
 
         return res.json()
@@ -49,7 +49,7 @@ class FigureEightClient:
         path = "jobs/{}.json".format(job_id)
         url = self.endpoint.format(path=path, api_key=self.api_key)
 
-        res = requests.post(url, data={"job[payment_cents]": price_in_cents})
+        res = requests.put(url, data={"job[payment_cents]": price_in_cents})
         self.__check_response_status_code(res, path)
 
         return res.json()
