@@ -157,7 +157,8 @@ class FigureEightClient:
                 if len(zip.filelist) == 0:
                     raise Exception("No result file found in zip report")
 
-                report = zip.read(zip.filelist[0].filename)
+                report_bytes = zip.read(zip.filelist[0].filename)
+                report = report_bytes.decode()
 
                 json_data = [json.loads(line) for line in report.split('\n') if line]
 
