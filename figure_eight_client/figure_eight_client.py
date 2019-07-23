@@ -3,16 +3,8 @@ from time import sleep
 
 import requests
 
-try:
-    # python 2 optimization
-    from cStringIO import StringIO
-except:
-    try:
-        # python 2 fallback
-        from StringIO import StringIO
-    except:
-        # python 3 fallback
-        from io import StringIO
+
+from io import BytesIO
 
 from zipfile import ZipFile
 
@@ -161,7 +153,7 @@ class FigureEightClient:
                 res = requests.get(url)
                 self.__check_response_status_code(res, path)
 
-                zip = ZipFile(StringIO(res.content))
+                zip = ZipFile(BytesIO(res.content))
                 if len(zip.filelist) == 0:
                     raise Exception("No result file found in zip report")
 
