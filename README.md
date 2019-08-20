@@ -25,6 +25,8 @@ Replace `<figure-eight-api-token>` with a token from https://make.figure-eight.c
 |add_tag_to_job(job_id, tag)|
 |upload_csv_to_job(job_id, data)|
 |launch_job(job_id, units_count, channel='on_demand')|
+|get_jobs(exclude_instructions=False, pages=1)|
+|get_job_rows(job_id, pages=-1)|
 |find_jobs_by_support_email(support_email, team_id=None)|
 |get_judgements_by_job_id(job_id)|
 |get_json_results_by_job_id(job_id)|
@@ -33,7 +35,7 @@ Replace `<figure-eight-api-token>` with a token from https://make.figure-eight.c
 
 ## Contributing
 
-Consider making a pull request if you have an idea or discover a bug. 
+Consider making a pull request if you have an idea or discover a bug.
 
 ## Thanks
 
