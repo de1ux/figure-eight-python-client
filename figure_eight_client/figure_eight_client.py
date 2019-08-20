@@ -1,12 +1,9 @@
 import json
+from io import BytesIO
 from time import sleep
+from zipfile import ZipFile
 
 import requests
-
-
-from io import BytesIO
-
-from zipfile import ZipFile
 
 
 class FigureEightClient:
@@ -45,6 +42,52 @@ class FigureEightClient:
         self.__check_response_status_code(res, path)
 
         return res.json()
+
+    def get_job_rows(self, job_id, pages=-1):
+        path = "jobs/{}/units.json".format(job_id)
+        url = self.endpoint.format(path=path, api_key=self.api_key)
+
+        results = []
+        i = 0
+        infinite = pages == -1
+        while i < pages or infinite:
+            res = requests.get(url + f"&page={i + 1}")
+            self.__check_response_status_code(res, path)
+            contents = res.json()
+            if len(contents) == 0:
+                break
+
+            results += [{'key': c, 'row': contents[c]} for c in contents]
+            i += 1
+
+        return results
+
+    def get_jobs(self, exclude_instructions=False, pages=-1):
+        path = "jobs.json"
+        url = self.endpoint.format(path=path, api_key=self.api_key)
+
+        results = []
+        i = 0
+        infinite = pages == -1
+        while i < pages or infinite:
+            res = requests.get(url + f"&page={i + 1}")
+            self.__check_response_status_code(res, path)
+
+            contents = res.json()
+            if len(contents) == 0:
+                break
+
+            if exclude_instructions:
+                for content in contents:
+                    del content['css']
+                    del content['js']
+                    del content['cml']
+                    del content['instructions']
+
+            results += contents
+            i += 1
+
+        return results
 
     def copy_job(self, job_id, all_units=True):
         path = "jobs/{}/copy.json".format(job_id)
